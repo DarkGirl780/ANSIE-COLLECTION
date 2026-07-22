@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TETRIS RED MODE</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-container">
+    <div class="lcd-frame">
+      <div class="lcd-header">No Cabe Bro</div>
+
+      <button id="backBtn" class="close-button" aria-label="Volver al menú">✕</button>
+
+      <div id="startScreen" class="screen">
+        <h1>TETRIS</h1>
+        <p>Bloques que caen como mi vida</p>
+        <button id="startBtn">INICIAR JUEGO</button>
+        <div class="controls-info">
+          Flechas = Mover<br />
+          ↑ = Rotar<br />
+          Espacio = Drop<br />
+          P = Pausa
+        </div>
+      </div>
+
+      <div id="pauseScreen" class="screen" style="display: none;">
+        <h1>PAUSA</h1>
+        <p>El tablero está congelado</p>
+        <button id="resumeBtn">CONTINUAR</button>
+        <button id="restartPauseBtn" class="secondary-button">REINICIAR</button>
+      </div>
+
+      <div id="gameOverScreen" class="screen" style="display: none;">
+        <h1>GAME OVER</h1>
+        <p id="finalScore">SCORE: 000000</p>
+        <button id="retryBtn">REINTENTAR</button>
+      </div>
+
+      <canvas id="gameCanvas" width="400" height="400" aria-label="Canvas del juego Tetris"></canvas>
+
+      <div class="side-panel">
+        <div class="next-card">
+          <div class="panel-title">SIGUIENTE</div>
+          <canvas id="nextCanvas" width="80" height="80" aria-label="Siguiente pieza"></canvas>
+        </div>
+
+        <div class="mascot-card">
+          <div class="mascot" id="mascot" aria-hidden="true">
+            <div class="mascot-body"></div>
+            <div class="mascot-eye mascot-eye-left"></div>
+            <div class="mascot-eye mascot-eye-right"></div>
+            <div class="mascot-mouth"></div>
+            <div class="mascot-blush mascot-blush-left"></div>
+            <div class="mascot-blush mascot-blush-right"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="touch-controls">
+        <div class="touch-row">
+          <button class="touch-btn" id="btnLeft">←</button>
+          <button class="touch-btn" id="btnDown">↓</button>
+          <button class="touch-btn" id="btnRight">→</button>
+        </div>
+        <div class="touch-row">
+          <button class="touch-btn" id="btnRotate">↻</button>
+          <button class="touch-btn" id="btnHardDrop">⤓⤓</button>
+          <button class="touch-btn" id="btnPause">⏸</button>
+        </div>
+      </div>
+
+      <div class="lcd-footer">
+        <div id="score">SCORE: 000000</div>
+        <div id="level">LEVEL: 01</div>
+        <div id="lines">LINES: 000</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

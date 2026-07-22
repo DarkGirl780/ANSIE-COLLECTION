@@ -1,0 +1,246 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #0a0a0a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Courier New', monospace;
+}
+.game-container {
+  padding: 20px;
+  background: #111;
+  border-radius: 15px;
+  box-shadow: 0 0 40px rgba(0, 255, 100, 0.3);
+}
+.lcd-frame {
+  background: #0f1a0f;
+  padding: 15px;
+  border: 8px solid #222;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 
+    inset 0 0 60px rgba(0, 0, 0, 0.9),
+    0 0 30px rgba(0, 255, 80, 0.4);
+}
+.lcd-header {
+  text-align: center;
+  color: #0f0;
+  font-size: 18px;
+  margin-bottom: 8px;
+  text-shadow: 0 0 10px #0f0;
+  letter-spacing: 3px;
+}
+#gameCanvas {
+  image-rendering: pixelated;
+  border: 4px solid #333;
+  background: #001a00;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+.screen {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 20, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #0f0;
+  z-index: 10;
+  text-align: center;
+}
+.screen h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 15px #0f0;
+}
+.screen button {
+  margin-top: 20px;
+  padding: 12px 30px;
+  font-family: 'Courier New', monospace;
+  font-size: 18px;
+  background: #001a00;
+  color: #0f0;
+  border: 3px solid #0f0;
+  cursor: pointer;
+  box-shadow: 0 0 15px #0f0;
+}
+.screen button:hover {
+  background: #0f0;
+  color: #000;
+}
+.controls-info {
+  margin-top: 30px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+.lcd-footer {
+  display: flex;
+  justify-content: space-between;
+  color: #0f0;
+  font-size: 16px;
+  margin-top: 10px;
+  padding: 0 10px;
+  text-shadow: 0 0 8px #0f0;
+}
+/* Efectos LCD */
+.lcd-frame::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 255, 100, 0.08) 2px,
+    rgba(0, 255, 100, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 2;
+  border-radius: 4px;
+}
+.lcd-frame::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.6) 100%);
+  pointer-events: none;
+  z-index: 3;
+  border-radius: 4px;
+}
+/* ====================== CONTROLES TÁCTILES ====================== */
+.touch-controls {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+}
+
+.touch-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.touch-row-pause {
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.touch-btn {
+  width: 58px;
+  height: 58px;
+  font-size: 24px;
+  background: #0a1a0a;
+  color: #0f0;
+  border: 3px solid #0f0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12px rgba(0, 255, 80, 0.4);
+  touch-action: manipulation;
+}
+
+.touch-btn-pause {
+  width: 64px;
+  height: 64px;
+  font-size: 22px;
+}
+
+.touch-btn:active {
+  background: #0f0;
+  color: #000;
+  transform: scale(0.95);
+}
+
+/* Ocultar controles táctiles en desktop */
+@media (min-width: 768px) {
+  .touch-controls {
+    display: none;
+  }
+}
+.back-button {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #001a00;
+  color: #0f0;
+  border: 2px solid #0f0;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 20;
+  box-shadow: 0 0 10px #0f0;
+}
+.back-button {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #001a00;
+  color: #0f0;
+  border: 2px solid #0f0;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 20;
+  box-shadow: 0 0 10px #0f0;
+  font-family: 'Courier New', monospace;
+}
+.back-button:hover {
+  background: #0f0;
+  color: #000;
+}
+.close-button {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  background: transparent;
+  color: #0f0;
+  border: 2px solid #0f0;
+  font-size: 24px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px #0f0;
+  font-weight: bold;
+}
+.close-button:hover {
+  background: #0f0;
+  color: #000;
+}
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: #001a00;
+  color: #0f0;
+  border: 2px solid #0f0;
+  font-size: 18px;
+  width: 28px;
+  height: 28px;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 30;
+  font-weight: bold;
+  box-shadow: 0 0 8px rgba(0, 255, 80, 0.35);
+}
+.close-button:hover {
+  background: #0f0;
+  color: #000;
+}

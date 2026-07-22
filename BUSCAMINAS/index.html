@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NO ME EXPLOTES</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-container">
+    <div class="lcd-frame">
+      <div class="lcd-header">NO ME EXPLOTES</div>
+      
+      <button id="backBtn" class="close-button" style="display: none;">✕</button>
+      
+      <div id="startScreen" class="screen">
+        <h1>MINAS</h1>
+        <button id="startBtn">INICIAR JUEGO</button>
+        <div class="controls-info">
+          Click Izq = Revelar<br>
+          Click Der = Bandera
+        </div>
+      </div>
+
+      <div id="gameContainer" style="display: none;">
+        <div class="game-header">
+          <div id="minesLeft">MINAS: 10</div>
+          <button id="restartBtn">REINICIAR</button>
+          <div id="timer">TIEMPO: 000</div>
+        </div>
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+      </div>
+
+      <div id="gameOverScreen" class="screen" style="display: none;">
+        <h1>💥 BOOM 💥</h1>
+        <p>Te explotó la ansiedad</p>
+        <button id="retryBtn">INTENTAR DE NUEVO</button>
+      </div>
+
+      <div id="winScreen" class="screen" style="display: none;">
+        <h1 style="color:#ff0;">¡GANASTE!</h1>
+        <p>¡Sobreviviste a las minas!</p>
+        <button id="winRestartBtn">JUGAR DE NUEVO</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
